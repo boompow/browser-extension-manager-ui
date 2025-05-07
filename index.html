@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Frontend Mentor | Browser extensions manager UI</title>
+
+</head>
+<body>
+  <header class="wrapper wrapper--header">
+    <img src="/assets/images/logo.svg">
+    <span class="mode">
+      <img src="/assets/images/icon-sun.svg">
+    </span>
+  </header>
+  <div class="wrapper  wrapper--list">
+    <h1>Extensions List</h1>
+    <div>
+      <button class="wrapper--btn">All</button>
+      <button class="wrapper--btn">Active</button>
+      <button class="wrapper--btn">Inactive</button>
+    </div>
+  </div>
+
+  <section class="layout">
+    <div class="card card--dark">
+      <div>
+        <img class="img" src="/assets/images/logo-devlens.svg" >
+        <span class="text_wrapper">
+          <h2>DevLens</h2>
+          <p>Quickly inspect page layouts and visualize element boundaries.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper btn_wrapper--dark">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-style-spy.svg" >
+        <span class="text_wrapper">
+          <h2>StyleSpy</h2>
+          <p>Instantly analyze and copy CSS from any webpage element.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-speed-boost.svg" >
+        <span class="text_wrapper">
+          <h2>SpeedBoost</h2>
+          <p>Optimizes browser resource usage to accelerate page loading.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-json-wizard.svg" >
+        <span class="text_wrapper">
+          <h2>JSONWizard</h2>
+          <p>Formats, validates, and prettifies JSON responses in-browser.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-tab-master-pro.svg" >
+        <span class="text_wrapper">
+          <h2>TabMaster Pro</h2>
+          <p>Organizes browser tabs into groups and sessions.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  
+    
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-viewport-buddy.svg" >
+        <span class="text_wrapper">
+          <h2>ViewportBuddy</h2>
+          <p>Simulates various screen resolutions directly within the browser.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-markup-notes.svg" >
+        <span class="text_wrapper">
+          <h2>Markup Notes</h2>
+          <p>Enables annotation and notes directly onto webpages for collaborative debugging.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-grid-guides.svg" >
+        <span class="text_wrapper">
+          <h2>GridGuides</h2>
+          <p>Overlay customizable grids and alignment guides on any webpage.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-palette-picker.svg" >
+        <span class="text_wrapper">
+          <h2>Palette Picker</h2>
+          <p>Instantly extracts color palettes from any webpage.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+    
+  
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-link-checker.svg" >
+        <span class="text_wrapper">
+          <h2>LinkChecker</h2>
+          <p>Scans and highlights broken links on any page.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-dom-snapshot.svg" >
+        <span class="text_wrapper">
+          <h2>DOM Snapshot</h2>
+          <p>Capture and export DOM structures quickly.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="card card--dark">
+      <div>
+        <img src="./assets/images/logo-console-plus.svg" >
+        <span class="text_wrapper">
+          <h2>ConsolePlus</h2>
+          <p>Enhanced developer console with advanced filtering and logging.</p>
+        </span>
+      </div>
+      <div class="btn_wrapper">
+        <button>Remove</button>
+        <div class="toggle">
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+ 
+  
+
+  <footer class="footer">
+    <hr class="hr">
+    <p>
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Made with 💖 by <a href="https://github.com/boompow">Boom Pow</a>.
+    </p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
