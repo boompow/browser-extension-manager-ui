@@ -13,9 +13,9 @@
     --fs-600: 1.625rem;
 
     --clr-neutral-900: hsl(227, 75%, 14%);
-    --clr-neutral-800: hsl(226, 25%, 17%);
-    --clr-neutral-700: hsl(225, 23%, 24%);
-    --clr-neutral-600: hsl(226, 11%, 37%);
+    --clr-neutral-800: hsl(226, 25%, 17%); /*dark mode sign*/
+    --clr-neutral-700: hsl(224, 26%, 16%);  /*card*/
+    --clr-neutral-600: hsl(226, 11%, 37%); /*borders*/
     --clr-neutral-300: hsl(0, 0%, 78%);
     --clr-neutral-200: hsl(217, 61%, 90%);
     --clr-neutral-100: hsl(0, 0%, 93%);
@@ -25,8 +25,26 @@
     --clr-red-500: hsl(3, 71%, 56%);
     --clr-red-700: hsl(3, 77%, 44%);
 
-    --clr-gradient-light: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
-    --clr-gradient-dark: linear-gradient(180deg, #040918 0%, #091540 100%);
+
+    /* Light Mode colors */
+    /* --clr-gradient: linear-gradient(180deg, #ECF3FD 0%, #EFFBFB 100%);
+    --clr-card: #FCFDFF;
+    --clr-card_border: none; */
+
+    --clr-gradient: linear-gradient(180deg, #050A1D 0%, #09153F 100%);
+    --clr-card: hsl(224, 26%, 16%); 
+    --clr-card_border: none;
+    --clr-btn: #2F354D;
+}
+
+
+
+
+.darkmode{
+    --clr-gradient: linear-gradient(180deg, #050A1D 0%, #09153F 100%);
+    --clr-card: hsl(224, 26%, 16%); 
+    --clr-card_border: none;
+    --clr-btn: #2F354D;
 }
 
 *{
@@ -38,11 +56,11 @@ html{
     font-family: var(--ff-san);
     font-weight: var(--fw-regular);
     line-height: 1.7;
-    color: var(--clr-neutral-900);
+    /* color: var(--clr-neutral-900); */
 }
 
 body{
-    background: var(--clr-gradient-dark);
+    background: var(--clr-gradient);
     max-width: 1100px;
     margin-inline: auto;
     padding-inline: 1rem;
@@ -57,18 +75,25 @@ body{
 }
 
 .wrapper--header{
-    background-color: var(--clr-neutral-700);
+    background-color: var(--clr-card);
     margin-block-start: 1rem;
     border-radius: 1rem;
+    color: var(--clr-neutral);
 }
+
 
 .mode{
     padding: 0.5rem;
-    border: 1px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
+    background-color: var(--clr-btn);
+    cursor: pointer;
+}
+
+.mode:active{
+    border: 1px solid var(--clr-red-400);
 }
 
 
@@ -79,13 +104,29 @@ body{
 
 .wrapper h1{
     font-size: var(--fs-600);
+    color: var(--clr-neutral);
 }
+
 
 .wrapper--btn{
     padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    border: none;
+    border-radius: 1.125rem;
+    border:2px solid #050A1D;
+    background-color: var(--clr-btn);
+    color: var(--clr-neutral);
+    font-family: var(--ff-san);
+    cursor: pointer;
 }
+
+.wrapper--btn:hover{
+    background-color: var(--clr-red-400);
+}
+
+.wrapper--btn:active{
+    border-color:var(--clr-red-400);
+    background-color: var(--clr-btn);
+}
+
 
 .layout{
     display: flex;
@@ -97,17 +138,14 @@ body{
 .card{
     flex: 1;
     min-width: 300px;
-    border: 1px solid red;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-
-}
-
-.card--dark{
-    background-color: var(--clr-neutral-600);
-    border: 1px solid var(--clr-neutral-300);
+    justify-content: space-between;
+    background-color: var(--clr-card);
+    border: 1px solid var(--clr-card_border);
     color: var(--clr-neutral-100);
+
 }
 
 .card > *{
@@ -133,16 +171,28 @@ body{
 .btn_wrapper{
     display: inherit;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
 }
 
 .btn_wrapper button{
     /* height: 1.5rem; */
     padding: 0.4rem 0.75rem;
     border-radius: 1rem;
-    background-color: var(--clr-neutral-300);
+    background-color: var(--clr-card);
     color: white;
-    border: 1px solid var(--clr-neutral-300);
+    border: 2px solid var(--clr-neutral-300);
+    font-family: var(--ff-san);
+    cursor: pointer;
+}
+
+.btn_wrapper button:hover{
+    background-color: var(--clr-red-400);
+    border-color: var(--clr-card);
+}
+
+.btn_wrapper button:active{
+    border-color:var(--clr-red-400);
+    background-color: var(--clr-btn);
 }
 
 .btn_wrapper--dark{
@@ -169,7 +219,7 @@ body{
 
 
 .toggle:hover{
-    background-color: var(--clr-red-700);
+    background-color: var(--clr-red-400);
 }
 
 .toggle:hover div{
@@ -181,10 +231,7 @@ body{
     max-width: auto;
     text-align: center;
     margin-top: 2rem;
-}
-
-.hr{
-    max-width: 1100px;
+    color: var(--clr-neutral);
 }
 
 footer p{
@@ -193,6 +240,11 @@ footer p{
 
 footer a{
     text-decoration: none;
+    color: var(--clr-neutral);
+}
+
+footer a:hover{
+    color: var(--clr-red-400);
 }
 
 
