@@ -4,7 +4,7 @@
 :root{
     --ff-san: "Noto Sans", sans-serif;;
 
-    --fw-light: 400;
+    --fw-light: 300;
     --fw-regular: 500;
     --fw-bold: 700;
 
@@ -13,9 +13,9 @@
     --fs-600: 1.625rem;
 
     --clr-neutral-900: hsl(227, 75%, 14%);
-    --clr-neutral-800: hsl(226, 25%, 17%); /*dark mode sign*/
-    --clr-neutral-700: hsl(224, 26%, 16%);  /*card*/
-    --clr-neutral-600: hsl(226, 11%, 37%); /*borders*/
+    --clr-neutral-800: hsl(226, 25%, 17%); 
+    --clr-neutral-700: hsl(224, 26%, 16%);
+    --clr-neutral-600: hsl(226, 11%, 37%); 
     --clr-neutral-300: hsl(0, 0%, 78%);
     --clr-neutral-200: hsl(217, 61%, 90%);
     --clr-neutral-100: hsl(0, 0%, 93%);
@@ -25,16 +25,16 @@
     --clr-red-500: hsl(3, 71%, 56%);
     --clr-red-700: hsl(3, 77%, 44%);
 
-
-    /* Light Mode colors */
-    /* --clr-gradient: linear-gradient(180deg, #ECF3FD 0%, #EFFBFB 100%);
-    --clr-card: #FCFDFF;
-    --clr-card_border: none; */
-
-    --clr-gradient: linear-gradient(180deg, #050A1D 0%, #09153F 100%);
-    --clr-card: hsl(224, 26%, 16%); 
-    --clr-card_border: none;
-    --clr-btn: #2F354D;
+/* Light Mode */
+    --clr-gradient: linear-gradient(180deg, #ECF3FD 0%, #EFFBFB 100%);
+    --clr-card: hsl(220, 100%, 99%); 
+    --clr-card-border: hsl(0, 0%, 78%);
+    --clr-mode: hsl(330, 6%, 93%);
+    --clr-btn: hsl(220, 100%, 99%);
+    --clr-h1: hsl(227, 85%, 13%);
+    --clr-btn_border: hsl(226, 11%, 37%);
+    --clr-bg-toggle: hsl(0, 0%, 78%);
+    --clr-btn-text-inverse: hsl(200, 60%, 99%);
 }
 
 
@@ -43,8 +43,13 @@
 .darkmode{
     --clr-gradient: linear-gradient(180deg, #050A1D 0%, #09153F 100%);
     --clr-card: hsl(224, 26%, 16%); 
-    --clr-card_border: none;
-    --clr-btn: #2F354D;
+    --clr-card-border: hsl(228, 23%, 24%);
+    --clr-mode: hsl(228, 23%, 24%);
+    --clr-btn: hsl(228, 23%, 24%);
+    --clr-h1: hsl(200, 60%, 99%);
+    --clr-btn_border: hsl(226, 11%, 37%);
+    --clr-bg-toggle: hsl(224, 12%, 37%);
+    --clr-btn-text-inverse: hsl(227, 85%, 13%);
 }
 
 *{
@@ -56,7 +61,6 @@ html{
     font-family: var(--ff-san);
     font-weight: var(--fw-regular);
     line-height: 1.7;
-    /* color: var(--clr-neutral-900); */
 }
 
 body{
@@ -67,20 +71,18 @@ body{
   
 }
 
-.wrapper{
+
+
+/* Head section */
+.head_wrapper{
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.wrapper--header{
     background-color: var(--clr-card);
     margin-block-start: 1rem;
     border-radius: 1rem;
-    color: var(--clr-neutral);
 }
-
 
 .mode{
     padding: 0.5rem;
@@ -88,43 +90,52 @@ body{
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
-    background-color: var(--clr-btn);
+    background-color: var(--clr-mode);
+    border: 1px solid var(--clr-mode);
     cursor: pointer;
 }
 
 .mode:active{
-    border: 1px solid var(--clr-red-400);
+    border-color:var(--clr-red-400);
 }
 
 
-.wrapper--list{
+/* List section */
+.list_wrapper{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-block-start: 1rem;
     flex-direction: column;
 }
 
-.wrapper h1{
+.list_wrapper h1{
     font-size: var(--fs-600);
-    color: var(--clr-neutral);
+    color: var(--clr-h1);
 }
 
 
-.wrapper--btn{
+.list_wrapper button{
     padding: 0.5rem 1rem;
     border-radius: 1.125rem;
-    border:2px solid #050A1D;
+    border:1px solid var(--clr-card-border);
     background-color: var(--clr-btn);
-    color: var(--clr-neutral);
+    color: var(--clr-h1);
     font-family: var(--ff-san);
     cursor: pointer;
 }
 
-.wrapper--btn:hover{
+.list_wrapper button:hover{
     background-color: var(--clr-red-400);
+    color: var(--clr-btn-text-inverse);
+    border-color:var(--clr-red-400);
 }
 
-.wrapper--btn:active{
+.list_wrapper button:active{
     border-color:var(--clr-red-400);
     background-color: var(--clr-btn);
+     color: var(--clr-h1);
 }
 
 
@@ -135,6 +146,8 @@ body{
 }
 
 
+
+/* Card content */
 .card{
     flex: 1;
     min-width: 300px;
@@ -143,8 +156,8 @@ body{
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--clr-card);
-    border: 1px solid var(--clr-card_border);
-    color: var(--clr-neutral-100);
+    border: 1px solid var(--clr-card-border);
+    color: var(--clr-h1);
 
 }
 
@@ -166,8 +179,12 @@ body{
 .text_wrapper p{
     font-size: var(--fs-400);
     overflow-wrap: break-word;
+    font-weight: var(--fw-light);
 }
 
+
+
+/* Remove Button Section */
 .btn_wrapper{
     display: inherit;
     justify-content: space-between;
@@ -175,38 +192,40 @@ body{
 }
 
 .btn_wrapper button{
-    /* height: 1.5rem; */
     padding: 0.4rem 0.75rem;
     border-radius: 1rem;
     background-color: var(--clr-card);
-    color: white;
-    border: 2px solid var(--clr-neutral-300);
+    color: var(--clr-h1);
+    border: 1px solid var(--clr-btn_border);
     font-family: var(--ff-san);
     cursor: pointer;
 }
 
 .btn_wrapper button:hover{
     background-color: var(--clr-red-400);
-    border-color: var(--clr-card);
+    border-color:var(--clr-red-400);
+    color: var(--clr-btn-text-inverse);
 }
 
 .btn_wrapper button:active{
     border-color:var(--clr-red-400);
     background-color: var(--clr-btn);
+     color: var(--clr-h1);
 }
 
-.btn_wrapper--dark{
-    background-color: var(--clr-neutral-600);
-}
 
+
+/* toggle button section */
 
 .toggle{
-    width: 2.5rem;
+    width: 2rem;
     height: 1rem;
     border-radius: 1rem;
-    background-color: var(--clr-neutral-300);
-    padding: 0.25rem;
+    background-color: var(--clr-bg-toggle);
+    border: 2px solid var(--clr-bg-toggle);
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .toggle div{
@@ -220,18 +239,21 @@ body{
 
 .toggle:hover{
     background-color: var(--clr-red-400);
+    transition: 0.2s;
+    border-color:var(--clr-red-400);
 }
 
 .toggle:hover div{
     right: 0;
-    margin-inline: 0.25rem;
 }
 
+
+/* Footer section */
 .footer{
     max-width: auto;
     text-align: center;
     margin-top: 2rem;
-    color: var(--clr-neutral);
+    color: var(--clr-h1);
 }
 
 footer p{
@@ -240,7 +262,7 @@ footer p{
 
 footer a{
     text-decoration: none;
-    color: var(--clr-neutral);
+    color: var(--clr-h1);
 }
 
 footer a:hover{
@@ -249,7 +271,21 @@ footer a:hover{
 
 
 @media (min-width: 800px){
-    .wrapper--list{
+    .list_wrapper{
         flex-direction: row;
+    }
+}
+
+@media(prefers-color-scheme: dark){
+    :root{
+    --clr-gradient: linear-gradient(180deg, #050A1D 0%, #09153F 100%);
+    --clr-card: hsl(224, 26%, 16%); 
+    --clr-card-border: hsl(228, 23%, 24%);
+    --clr-mode: hsl(228, 23%, 24%);
+    --clr-btn: hsl(228, 23%, 24%);
+    --clr-h1: hsl(200, 60%, 99%);
+    --clr-btn_border: hsl(226, 11%, 37%);
+    --clr-bg-toggle: hsl(224, 12%, 37%);
+    --clr-btn-text-inverse: hsl(227, 85%, 13%);
     }
 }
