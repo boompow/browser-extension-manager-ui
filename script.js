@@ -144,10 +144,6 @@ var card_arr = [
   },
 ];
 
-// storing the card remove into local storage
-// localStorage.setItem("card", JSON.stringify(card_arr));
-// filter button bg-color change
-
 // filter buttons
 var all_btn = document.querySelector(".all_btn");
 var active_btn = document.querySelector(".active_btn");
@@ -307,3 +303,6 @@ var render_cards = () => {
 };
 
 render_cards();
+
+// future issue
+// if a card is removed, its active status would naturally be removed
