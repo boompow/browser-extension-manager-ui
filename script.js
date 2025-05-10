@@ -4,11 +4,6 @@ var mode_img = document.querySelector(".mode_img");
 var mode_container = document.querySelector(".mode");
 var html = document.documentElement;
 
-// filter buttons
-var all_btn = document.querySelector(".all_btn");
-var active_btn = document.querySelector(".active_btn");
-var inactive_btn = document.querySelector(".inactive_btn");
-
 // Theme related Logic
 var current_theme = localStorage.getItem("theme");
 var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -153,114 +148,159 @@ var card_arr = [
 // localStorage.setItem("card", JSON.stringify(card_arr));
 // filter button bg-color change
 
+// filter buttons
+var all_btn = document.querySelector(".all_btn");
+var active_btn = document.querySelector(".active_btn");
+var inactive_btn = document.querySelector(".inactive_btn");
+var restore_btn = document.querySelector(".restore_btn");
+
+// filter buttons eventlistners
+active_btn.addEventListener("click", () => {
+  localStorage.setItem("filter", "active");
+  render_cards();
+});
+inactive_btn.addEventListener("click", () => {
+  localStorage.setItem("filter", "inactive");
+  render_cards();
+});
+all_btn.addEventListener("click", () => {
+  localStorage.setItem("filter", "all");
+  render_cards();
+});
+restore_btn.addEventListener("click", () => {
+  localStorage.setItem("filter", "restore");
+  render_cards();
+});
+
 // simulating the cards in the DOM
 var render_cards = () => {
-  var filter_btn_color = (btn) => {
-    btn.style.backgroundColor = "hsl(3, 71%, 56%)";
-    btn.style.borderColor = "hsl(3, 71%, 56%)";
-  };
-
   var card_container = document.querySelector(".layout");
   card_container.innerHTML = "";
-  var condition = "all";
-
+  var current_filter_btn = localStorage.getItem("filter");
   var card_parsed = JSON.parse(localStorage.getItem("card")) || [];
+
+  // activated color indicator logic
+  if (current_filter_btn === "active") {
+    active_btn.classList.add("list_wrapper_btn_activated");
+    inactive_btn.classList.remove("list_wrapper_btn_activated");
+    all_btn.classList.remove("list_wrapper_btn_activated");
+    restore_btn.classList.remove("list_wrapper_btn_activated");
+  } else if (current_filter_btn === "inactive") {
+    active_btn.classList.remove("list_wrapper_btn_activated");
+    inactive_btn.classList.add("list_wrapper_btn_activated");
+    all_btn.classList.remove("list_wrapper_btn_activated");
+    restore_btn.classList.remove("list_wrapper_btn_activated");
+  } else if (current_filter_btn === "all") {
+    active_btn.classList.remove("list_wrapper_btn_activated");
+    inactive_btn.classList.remove("list_wrapper_btn_activated");
+    all_btn.classList.add("list_wrapper_btn_activated");
+    restore_btn.classList.remove("list_wrapper_btn_activated");
+  } else {
+    active_btn.classList.remove("list_wrapper_btn_activated");
+    inactive_btn.classList.remove("list_wrapper_btn_activated");
+    all_btn.classList.remove("list_wrapper_btn_activated");
+    restore_btn.classList.add("list_wrapper_btn_activated");
+  }
+
   card_parsed.forEach((element) => {
-    if (element.remove) return;
+    if (
+      current_filter_btn === "active"
+        ? element.active
+        : current_filter_btn === "inactive"
+        ? !element.active
+        : true
+    ) {
+      if (element.remove && current_filter_btn !== "restore") return;
 
-    // filter buttons eventlistners
-    active_btn.addEventListener("click", () => {
-      if (element.active) {
-        condition = "active";
-        filter_btn_color(active_btn);
-      }
-    });
+      // Card
+      var card = document.createElement("div");
+      card.classList.add("card");
 
-    // Card
-    var card = document.createElement("div");
-    card.classList.add("card");
+      // img and text wrapper
+      var card_sub_div_1 = document.createElement("div");
+      var card_img = document.createElement("img");
+      card_img.setAttribute("src", element.img);
+      var card_span = document.createElement("span");
+      card_span.classList.add("text_wrapper");
 
-    // img and text wrapper
-    var card_sub_div_1 = document.createElement("div");
-    var card_img = document.createElement("img");
-    card_img.setAttribute("src", element.img);
-    var card_span = document.createElement("span");
-    card_span.classList.add("text_wrapper");
+      var card_h = document.createElement("h2");
+      card_h.innerHTML = element.title;
+      var card_p = document.createElement("p");
+      card_p.innerHTML = element.detail;
 
-    var card_h = document.createElement("h2");
-    card_h.innerHTML = element.title;
-    var card_p = document.createElement("p");
-    card_p.innerHTML = element.detail;
+      card_span.appendChild(card_h);
+      card_span.appendChild(card_p);
+      card_sub_div_1.appendChild(card_img);
+      card_sub_div_1.appendChild(card_span);
 
-    card_span.appendChild(card_h);
-    card_span.appendChild(card_p);
-    card_sub_div_1.appendChild(card_img);
-    card_sub_div_1.appendChild(card_span);
+      // btn wrapper
+      var card_sub_div_2 = document.createElement("div");
+      card_sub_div_2.classList.add("btn_wrapper");
 
-    // btn wrapper
-    var card_sub_div_2 = document.createElement("div");
-    card_sub_div_2.classList.add("btn_wrapper");
-
-    var card_btn = document.createElement("button");
-    card_btn.innerHTML = "remove";
-    var card_toggle_wrapper = document.createElement("div");
-    card_toggle_wrapper.classList.add("toggle");
-    var card_toggle = document.createElement("div");
-
-    // remove button event listner
-    card_btn.addEventListener("click", () => {
+      var card_btn = document.createElement("button");
       if (element.remove) {
-        element.remove = false;
-        localStorage.setItem("card", JSON.stringify(card_parsed));
-        render_cards();
+        card_btn.innerHTML = "Add";
       } else {
-        element.remove = true;
-        localStorage.setItem("card", JSON.stringify(card_parsed));
-        render_cards();
+        card_btn.innerHTML = "Remove";
       }
-    });
 
-    // toggle button status
-    // removed from the eventlistner because the style is not re-rendered
-    if (element.active) {
-      card_toggle_wrapper.style.backgroundColor = "hsl(3, 86%, 64%)";
-      card_toggle_wrapper.style.borderColor = "hsl(3, 86%, 64%)";
-      card_toggle.style.right = "0";
-    } else if (!element.active && current_theme === "dark") {
-      card_toggle_wrapper.style.backgroundColor = "hsl(224, 12%, 37%)";
-      card_toggle_wrapper.style.borderColor = "hsl(224, 12%, 37%)";
-      card_toggle.style.left = "0";
-    } else if (!element.active && current_theme === "light") {
-      card_toggle_wrapper.style.backgroundColor = "hsl(0, 0%, 78%)";
-      card_toggle_wrapper.style.borderColor = "hsl(0, 0%, 78%)";
-      card_toggle.style.left = "0";
-    }
+      var card_toggle_wrapper = document.createElement("div");
+      card_toggle_wrapper.classList.add("toggle");
+      var card_toggle = document.createElement("div");
 
-    // updating toggle status
-    card_toggle_wrapper.addEventListener("click", () => {
+      // remove button event listner
+      card_btn.addEventListener("click", () => {
+        if (element.remove) {
+          element.remove = false;
+          localStorage.setItem("card", JSON.stringify(card_parsed));
+          render_cards();
+        } else {
+          element.remove = true;
+          localStorage.setItem("card", JSON.stringify(card_parsed));
+          render_cards();
+        }
+      });
+
+      // toggle button status
+      // removed from the eventlistner because the style is not re-rendered
       if (element.active) {
-        element.active = false;
-        localStorage.setItem("card", JSON.stringify(card_parsed));
-        render_cards();
+        card_toggle_wrapper.style.backgroundColor = "hsl(3, 86%, 64%)";
+        card_toggle_wrapper.style.borderColor = "hsl(3, 86%, 64%)";
+        card_toggle.style.right = "0";
       } else if (!element.active && current_theme === "dark") {
-        element.active = true;
-        localStorage.setItem("card", JSON.stringify(card_parsed));
-        render_cards();
+        card_toggle_wrapper.style.backgroundColor = "hsl(224, 12%, 37%)";
+        card_toggle_wrapper.style.borderColor = "hsl(224, 12%, 37%)";
+        card_toggle.style.left = "0";
       } else if (!element.active && current_theme === "light") {
-        element.active = true;
-        localStorage.setItem("card", JSON.stringify(card_parsed));
-        render_cards();
+        card_toggle_wrapper.style.backgroundColor = "hsl(0, 0%, 78%)";
+        card_toggle_wrapper.style.borderColor = "hsl(0, 0%, 78%)";
+        card_toggle.style.left = "0";
       }
-    });
 
-    card_toggle_wrapper.appendChild(card_toggle);
-    card_sub_div_2.appendChild(card_btn);
-    card_sub_div_2.appendChild(card_toggle_wrapper);
+      // updating toggle status
+      card_toggle_wrapper.addEventListener("click", () => {
+        if (element.active) {
+          element.active = false;
+          localStorage.setItem("card", JSON.stringify(card_parsed));
+          render_cards();
+        } else if (!element.active && current_theme === "dark") {
+          element.active = true;
+          localStorage.setItem("card", JSON.stringify(card_parsed));
+          render_cards();
+        } else if (!element.active && current_theme === "light") {
+          element.active = true;
+          localStorage.setItem("card", JSON.stringify(card_parsed));
+          render_cards();
+        }
+      });
 
-    card.appendChild(card_sub_div_1);
-    card.appendChild(card_sub_div_2);
+      card_toggle_wrapper.appendChild(card_toggle);
+      card_sub_div_2.appendChild(card_btn);
+      card_sub_div_2.appendChild(card_toggle_wrapper);
 
-    if (element.active) {
+      card.appendChild(card_sub_div_1);
+      card.appendChild(card_sub_div_2);
+
       card_container.appendChild(card);
     }
   });
