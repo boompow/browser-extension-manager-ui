@@ -40,7 +40,31 @@
 
 
 
-.darkmode{
+.dark{
+     --ff-san: "Noto Sans", sans-serif;;
+
+    --fw-light: 300;
+    --fw-regular: 500;
+    --fw-bold: 700;
+
+    --fs-400: 0.9275rem;
+    --fs-500: 1.25rem;
+    --fs-600: 1.625rem;
+
+    --clr-neutral-900: hsl(227, 75%, 14%);
+    --clr-neutral-800: hsl(226, 25%, 17%); 
+    --clr-neutral-700: hsl(224, 26%, 16%);
+    --clr-neutral-600: hsl(226, 11%, 37%); 
+    --clr-neutral-300: hsl(0, 0%, 78%);
+    --clr-neutral-200: hsl(217, 61%, 90%);
+    --clr-neutral-100: hsl(0, 0%, 93%);
+    --clr-neutral:hsl(200, 60%, 99%);
+
+    --clr-red-400: hsl(3, 86%, 64%);
+    --clr-red-500: hsl(3, 71%, 56%);
+    --clr-red-700: hsl(3, 77%, 44%);
+
+    /* Dark Mode */
     --clr-gradient: linear-gradient(180deg, #050A1D 0%, #09153F 100%);
     --clr-card: hsl(224, 26%, 16%); 
     --clr-card-border: hsl(228, 23%, 24%);
@@ -143,6 +167,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    /* min-height: 63vh; 63 was selected through trial and error to keep the page from shrinking as the cards are removed */
 }
 
 
@@ -150,7 +175,8 @@ body{
 /* Card content */
 .card{
     flex: 1;
-    min-width: 300px;
+    min-width: 300px; /*to keep it responsive min and max width are setup*/
+    max-width: 345px;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -234,17 +260,7 @@ body{
     background-color: white;
     border-radius: 100%;
     position: absolute;
-}
-
-
-.toggle:hover{
-    background-color: var(--clr-red-400);
     transition: 0.2s;
-    border-color:var(--clr-red-400);
-}
-
-.toggle:hover div{
-    right: 0;
 }
 
 
