@@ -173,7 +173,9 @@ var render_cards = () => {
   var card_container = document.querySelector(".layout");
   card_container.innerHTML = "";
   var current_filter_btn = localStorage.getItem("filter");
-  var card_parsed = JSON.parse(localStorage.getItem("card")) || [];
+  var card_parsed = localStorage.getItem("card")
+    ? JSON.parse(localStorage.getItem("card"))
+    : card_arr;
 
   // activated color indicator logic
   if (current_filter_btn === "active") {
